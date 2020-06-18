@@ -1,0 +1,9 @@
+{% extends "base.html" %}
+{% block content %}
+    <h1>Prihlásenie</h1>
+    <p>
+        Prihlásenie prebehlo úspešne, SSO relácia je aktívna.
+    </p>
+    <a href="{{ url_for('logout') }}">Odhlásiť sa</a>
+
+{% endblock %}
