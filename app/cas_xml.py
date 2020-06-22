@@ -10,7 +10,7 @@ def create_xml_response_success(identity):
     success = ElementTree.SubElement(root, _('authenticationSuccess'))
 
     user = ElementTree.SubElement(success, _('user'))
-    user.text = "username"
+    user.text = identity.identity_id
 
     attrs = ElementTree.SubElement(success, _('attributes'))
 
