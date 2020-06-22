@@ -1,5 +1,3 @@
-# -*- coding: utf-8 -*-
-
 from flask_wtf import FlaskForm
 from wtforms import SelectField, StringField, PasswordField, BooleanField, SubmitField
 from wtforms.validators import ValidationError, DataRequired, URL, Optional, EqualTo
@@ -8,9 +6,9 @@ from wtforms.validators import ValidationError, DataRequired, URL, Optional, Equ
 class LoginForm(FlaskForm):
     login = StringField('Login', validators=[DataRequired()])
     password = PasswordField('Heslo', validators=[DataRequired()])
-    service = StringField('Služba', validators=[URL(require_tld=False), Optional()])
+    service = StringField(u'Služba', validators=[URL(require_tld=False), Optional()])
 
-    submit = SubmitField('Prihlásiť sa')
+    submit = SubmitField(u'Prihlásiť sa')
 
 
 # class CreateForm(FlaskForm):

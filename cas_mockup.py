@@ -7,4 +7,3 @@ def make_shell_context():
     return {'db': db, 'Identity': Identity, 'Role': Role, 'TGTicket': TGTicket}
 
 
-

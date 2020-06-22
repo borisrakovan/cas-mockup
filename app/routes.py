@@ -1,5 +1,3 @@
-# -*- coding: utf-8 -*-
-
 import random
 import string
 from flask import request, render_template, url_for, redirect, make_response, flash, Response
@@ -53,11 +51,11 @@ def login():
         # authentication failed
         if not identity:
             app.logger.info("identity %s doesn't exist" % form.login.data)
-            flash("Subjekt %s neexistuje." % form.login.data)
+            flash(u"Subjekt %s neexistuje." % form.login.data)
             return redirect(url_for('login'))
 
         if not identity.check_password(form.password.data):
-            flash("Zadali ste nesprávne heslo.")
+            flash(u"Zadali ste nesprávne heslo.")
             return redirect(url_for('login'))
 
         # authentication successful
