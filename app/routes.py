@@ -127,6 +127,11 @@ def service_validate():
     return Response(xml, mimetype='text/xml')
 
 
+# @app.route('/createSubject')
+# def create_subject('/createSubject'):
+
+
+
 @app.route('/testService')
 def test_service():
     # http://127.0.0.1:5000/serviceValidate?ticket=ST-32-H66FZ5MICZCW41CLKMX91M8FKA5CBNTY-node0&service=http://127.0.0.1:5000/testService
