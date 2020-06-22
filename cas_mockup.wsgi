@@ -8,3 +8,4 @@ with open(activate_this) as file_:
 
 from app import app as application
 
+app.debug = True
