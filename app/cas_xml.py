@@ -43,7 +43,7 @@ def create_xml_response_failure(ticket):
 
 
 def _dumps(elem):
-    return ElementTree.tostring(elem, encoding='unicode')
+    return ElementTree.tostring(elem, encoding='utf-8')
 
 
 def _pretty_print(xml_data):
