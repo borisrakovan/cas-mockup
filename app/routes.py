@@ -105,6 +105,8 @@ def logout():
     service = request.args.get('service')
 
     if service:
+        if 'edem.microcomp.sk' in service:
+            service += ':5000'
         response = make_response(redirect(service))
     else:
         response = make_response(render_template('logout.html', title='Logout'))
