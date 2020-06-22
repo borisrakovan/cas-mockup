@@ -1,3 +1,5 @@
+# -*- coding: utf-8 -*-
+
 import random
 import string
 from flask import request, render_template, url_for, redirect, make_response, flash, Response
