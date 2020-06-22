@@ -1,5 +1,6 @@
 # -*- coding: utf-8 -*-
 
+import json
 import random
 import string
 from flask import request, render_template, url_for, redirect, make_response, flash, Response
@@ -54,11 +55,17 @@ def login():
         if not identity:
             app.logger.info("identity %s doesn't exist" % form.login.data)
             flash(u"Subjekt %s neexistuje." % form.login.data)
-            return redirect(url_for('login'))
+            params = {}
+            if service:
+                params['service'] = service
+            return redirect(url_for('login', **params))
 
         if not identity.check_password(form.password.data):
             flash(u"Zadali ste nesprávne heslo.")
-            return redirect(url_for('login'))
+            params = {}
+            if service:
+                params['service'] = service
+            return redirect(url_for('login', **params))
 
         # authentication successful
         service = form.service.data
