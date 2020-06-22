@@ -1,3 +1,5 @@
+import sys
+sys.path.append('/usr/lib/cas-mockup/')
 
 activate_this = '/usr/lib/cas-mockup/venv/bin/activate_this.py'
 with open(activate_this) as file_:
