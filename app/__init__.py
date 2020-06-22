@@ -16,9 +16,10 @@ migrate = Migrate(app, db)
 
 if not app.debug:  # and app.testing
     # logging to file
-    if not os.path.exists('logs'):
-        os.mkdir('logs')
-    file_handler = RotatingFileHandler('logs/cas-mockup.log', maxBytes=10240,
+    log_dir = app.config['LOG_DIR']
+    if not os.path.exists(log_dir):
+        os.mkdir(log_dir)
+    file_handler = RotatingFileHandler(os.path.join(log_dir, 'cas-mockup.log'), maxBytes=10240,
                                        backupCount=10)
     file_handler.setFormatter(logging.Formatter(
         '%(asctime)s %(levelname)s: %(message)s [in %(pathname)s:%(lineno)d]'))
