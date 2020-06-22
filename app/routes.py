@@ -156,11 +156,22 @@ def _create_ticket_and_generate_url(service, identity):
 
 
 def _generate_service_ticket():
-    ticket = ''.join(random.choices(string.ascii_uppercase + string.digits, k=32))
+    k = 32
+    ticket = []
+    choices = string.ascii_uppercase + string.digits
+    for i in range(k):
+        ticket.append(random.choice(choices))
+
+    ticket = ''.join(ticket)
     return "ST-32-{}-node0".format(ticket)
 
 
 def _generate_tg_ticket():
-    ticket = ''.join(random.choices(string.ascii_uppercase + string.digits, k=32))
-    return "TGC-32-{}-node0".format(ticket)
+    k = 32
+    ticket = []
+    choices = string.ascii_uppercase + string.digits
+    for i in range(k):
+        ticket.append(random.choice(choices))
 
+    ticket = ''.join(ticket)
+    return "TGC-32-{}-node0".format(ticket)
