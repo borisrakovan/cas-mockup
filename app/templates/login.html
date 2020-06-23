@@ -28,5 +28,26 @@
         </p>
         <p>{{ form.submit() }}</p>
     </form>
+    <a href="{{ url_for('create_subject') }}">Vytvoriť nový subjekt</a>
+    <table id="login-table">
+    <tr>
+        <th>Login</th>
+        <th>Identity ID</th>
+        <th>Organizácia</th>
+        <th>Role</th>
+    </tr>
+    {% for i in identities %}
+    <tr>
+        <td><b>{{ i.login }}</b></td>
+        <td>{{ i.identity_id }}</td>
+        <td>{{ i.organization }}</td>
+        <td>
+            {% for r in i.roles %}
+                {{ r }},
+            {% endfor %}
+        </td>
+    </tr>
+    {% endfor %}
+    </table>
 
 {% endblock %}

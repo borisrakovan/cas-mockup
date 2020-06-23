@@ -4,8 +4,8 @@ import json
 import random
 import string
 from flask import request, render_template, url_for, redirect, make_response, flash, Response
-from app import app
-from app.forms import LoginForm
+from app import app, db
+from app.forms import LoginForm, CreateForm
 from app.models import Identity, Role, TGTicket
 from app.cas_xml import create_xml_response_success, create_xml_response_failure
 
@@ -92,7 +92,7 @@ def login():
 
     # credential requestor
     form.service.data = service
-    return render_template('login.html', title='Login', form=form)
+    return render_template('login.html', title='Login', form=form, identities=Identity.query.all())
 
 
 @app.route('/login_successful')
@@ -138,9 +138,31 @@ def service_validate():
     return Response(xml, mimetype='text/xml')
 
 
-# @app.route('/createSubject')
-# def create_subject('/createSubject'):
+@app.route('/createSubject', methods=['GET', 'POST'])
+def create_subject():
+    form = CreateForm()
 
+    if form.validate_on_submit():
+        login = form.login.data
+        identity_id = form.identity_id.data
+        from sqlalchemy import or_
+        exists = Identity.query.filter(or_(Identity.identity_id == identity_id, Identity.login == login)).first()
+        if exists:
+            flash(u'Subjekt s danými údajmi už existuje.')
+            return redirect(url_for('create_subject'))
+
+        identity = Identity(login=login, identity_id=identity_id, organization=form.organization.data)
+        identity.set_password('PopradTa3')
+        for r_id in form.roles.data:
+            identity.roles.append(Role.query.get(r_id))
+
+        db.session.add(identity)
+        db.session.commit()
+
+        flash(u'Nový subjekt bol úspešne vytvorený.')
+        return redirect(url_for('login'))
+
+    return render_template('create_subject.html', form=form)
 
 
 @app.route('/testService')

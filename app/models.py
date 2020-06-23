@@ -35,6 +35,8 @@ class Role(db.Model):
     code = db.Column(db.String(32), unique=True)
     description = db.Column(db.String(128))  # todo missing
 
+    def __repr__(self):
+        return self.code
 
 class TGTicket(db.Model):
     ticket = db.Column(db.String(128), primary_key=True)

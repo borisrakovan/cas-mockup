@@ -1,0 +1,13 @@
+body {
+    margin: 30px 20px;
+    font-family:  sans-serif;
+}
+
+form, #login-table {
+    margin: 20px 0;
+}
+
+#login-table, #login-table tr {
+    border: 1px solid black;
+}
+
