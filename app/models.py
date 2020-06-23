@@ -1,6 +1,6 @@
 from app import db
 from sqlalchemy import exc
-from werkzeug.security import generate_password_hash, check_password_hash
+# from werkzeug.security import generate_password_hash, check_password_hash
 
 
 identity_role_table = db.Table('identity_role_table',
@@ -11,7 +11,7 @@ identity_role_table = db.Table('identity_role_table',
 
 class Identity(db.Model):
     login = db.Column(db.String(32), unique=True)
-    password_hash = db.Column(db.String(128))
+    # password_hash = db.Column(db.String(128))
     identity_id = db.Column(db.String(64), primary_key=True)
     first_name = db.Column(db.String(32))
     surname = db.Column(db.String(32))
@@ -22,12 +22,12 @@ class Identity(db.Model):
         # secondaryjoin=(identity_role_table.c.role_id == id),
         # backref=db.backref('followers', lazy='dynamic'), lazy='dynamic')
 
-    def set_password(self, password):
-        self.password_hash = generate_password_hash(password)
-
-    def check_password(self, password):
-        # return check_password_hash(self.password_hash, password)
-        return True
+    # def set_password(self, password):
+    #     self.password_hash = generate_password_hash(password)
+    #
+    # def check_password(self, password):
+    #     # return check_password_hash(self.password_hash, password)
+    #     return True
 
 
 class Role(db.Model):

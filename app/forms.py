@@ -9,7 +9,7 @@ from app.models import Role
 
 class LoginForm(FlaskForm):
     login = StringField('Login', validators=[DataRequired()])
-    password = PasswordField('Heslo', validators=[DataRequired()])
+    # password = PasswordField('Heslo', validators=[DataRequired()])
     service = StringField(u'Služba', validators=[URL(require_tld=False), Optional()])
 
     submit = SubmitField(u'Prihlásiť sa')

@@ -60,12 +60,12 @@ def login():
                 params['service'] = service
             return redirect(url_for('login', **params))
 
-        if not identity.check_password(form.password.data):
-            flash(u"Zadali ste nesprávne heslo.")
-            params = {}
-            if service:
-                params['service'] = service
-            return redirect(url_for('login', **params))
+        # if not identity.check_password(form.password.data):
+        #     flash(u"Zadali ste nesprávne heslo.")
+        #     params = {}
+        #     if service:
+        #         params['service'] = service
+        #     return redirect(url_for('login', **params))
 
         # authentication successful
         service = form.service.data
@@ -152,7 +152,7 @@ def create_subject():
             return redirect(url_for('create_subject'))
 
         identity = Identity(login=login, identity_id=identity_id, organization=form.organization.data)
-        identity.set_password('PopradTa3')
+        # identity.set_password('PopradTa3')
         for r_id in form.roles.data:
             identity.roles.append(Role.query.get(r_id))
 
